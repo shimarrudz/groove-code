@@ -1,135 +1,91 @@
-# Turborepo starter
+# Groove Code
 
-This Turborepo starter is maintained by the Turborepo core team.
+Um instrumento musical de código: um ambiente online, minimalista e imersivo. De um lado, um editor simples e elegante; do outro, uma visualização abstrata e pulsante que reage ao som. Não há botões tradicionais de play/stop: o código é a música. Cada alteração no código é refletida em tempo real no áudio.
 
-## Using this example
+> Objetivo: não ser uma DAW completa (como Ableton Live), mas sim um instrumento expressivo em que a linguagem de programação é a interface.
 
-Run the following command:
+---
 
-```sh
-npx create-turbo@latest
+## Visão geral
+- **Monorepo** com Turborepo.
+- **Web (Angular)**: interface minimalista e visualização reativa.
+- **API (NestJS)**: serviços backend para áudio/estado (evoluindo conforme o projeto).
+- (Opcional) **Docs (Next.js)**: site de documentação.
+
+Estrutura:
+```
+apps/
+  groove-code-web/   # App web (Angular)
+  groove-code-api/   # API (NestJS)
+  docs/              # Documentação (opcional)
+packages/
+  ui/                # Componentes compartilhados (se aplicável)
+  eslint-config/     # Config ESLint
+  typescript-config/ # TS configs
 ```
 
-## What's inside?
+---
 
-This Turborepo includes the following packages/apps:
+## Pré‑requisitos
+- Node.js >= 18
+- npm >= 9
 
-### Apps and Packages
+Dica: use as versões indicadas em `package.json` (campo `engines`/`packageManager`).
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+---
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## Como rodar localmente
+1. Instale as dependências na raiz do monorepo:
+   ```bash
+   npm install
+   ```
+2. Suba Web e API em paralelo:
+   ```bash
+   npm run dev
+   ```
+3. Acesse:
+   - Web (Angular): http://localhost:4200
+   - API (NestJS): http://localhost:3000
 
-### Utilities
+> O comando `npm run dev` usa o Turborepo para rodar `dev` apenas em `./apps/groove-code-web` e `./apps/groove-code-api`.
 
-This Turborepo has some additional tools already setup for you:
+---
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## Scripts úteis
+- Raiz
+  - `npm run dev`: inicia Web e API em paralelo (via Turbo).
+  - `npm run build`: build nos pacotes/aplicações.
+  - `npm run lint`: lint em todo o monorepo.
+  - `npm run check-types`: checagem de tipos.
+- Web (apps/groove-code-web)
+  - `npm run dev`: `ng serve` (porta padrão 4200). 
+- API (apps/groove-code-api)
+  - `npm run dev`: `nest start --watch` (porta padrão 3000).
 
-### Build
+---
 
-To build all apps and packages, run the following command:
+## Variáveis de ambiente
+- Arquivos `.env` são ignorados pelo Git.
+- Configure variáveis específicas da API/Web conforme necessário (ex.: URLs, tokens, portas). As portas padrão podem ser ajustadas via flags/scripts ou variáveis.
 
-```
-cd my-turborepo
+---
 
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
+## Solução de problemas
+- "No tasks were executed": confirme que cada app possui `scripts.dev` e que o filtro do Turbo aponta para:
+  - `./apps/groove-code-web`
+  - `./apps/groove-code-api`
+- Conflito de portas: ajuste as portas (`ng serve --port 4200`, configurar porta no Nest ou via `PORT`).
+- Dependências inconsistentes: `rm -rf node_modules && npm install` na raiz.
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
+---
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+## Roadmap resumido
+- Linguagem de live coding musical amigável e expressiva.
+- Engine de áudio reativa a mudanças no código (hot‑reload musical).
+- Visualização generativa sincronizada com o áudio.
+- Presets, exemplos e compartilhamento de sketches.
 
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+---
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+## Licença
+Projeto em estágio inicial; detalhes de licença podem evoluir.
