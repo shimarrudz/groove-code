@@ -89,5 +89,37 @@ Dica: use as versões indicadas em `package.json` (campo `engines`/`packageManag
 
 ---
 
+## 🎨 Paleta de cores – Groove Code
+# 🔵 Fundo (dark navy)
+
+#0C0E18 – fundo mais escuro
+
+#141827 – variação do fundo
+
+#151927 – navy levemente mais claro
+
+Essas cores criam o clima tech + noturno + sofisticado.
+
+🔷 Gradiente do símbolo (vinil / groove)
+
+Gradiente frio, moderno, muito bem alinhado com música + código:
+
+#2F6FE4 – azul elétrico
+
+#3F8DEB – azul médio vibrante
+
+#55C6C4 – ciano / verde água
+
+#6FE7D8 – ciano claro (highlight)
+
+👉 Esse gradiente funciona muito bem em linear (45° ou 90°) ou radial, como no símbolo atual.
+
+⚪ Tipografia
+
+#FFFFFF – branco puro (texto principal)
+
+#F2F2F3 – branco suave (alternativa para menos contraste)
+---
+
 ## Licença
 Projeto em estágio inicial; detalhes de licença podem evoluir.
