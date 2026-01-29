@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  /* Fundo (dark navy) */
+  --gc-bg:  #0C0E18;  /* principal */
+  --gc-bg-2:#141827;  /* variação */
+  --gc-bg-3:#151927;  /* variação */
+
+  /* Gradiente do símbolo (azul → ciano/verde) */
+  --gc-g1: #2F6FE4;   /* azul elétrico */
+  --gc-g2: #3F8DEB;   /* azul médio vibrante */
+  --gc-g3: #55C6C4;   /* ciano/verde água */
+  --gc-g4: #6FE7D8;   /* ciano claro (highlight) */
+  --gc-accent-gradient: linear-gradient(135deg, var(--gc-g1), var(--gc-g2), var(--gc-g3), var(--gc-g4));
+
+  /* Tipografia */
+  --gc-text: #FFFFFF;     /* texto principal */
+  --gc-text-soft: #F2F2F3;/* alternativa com menos contraste */
+
+  /* Superfície/borda (opcional) */
+  --gc-surface: #10182b;
+  --gc-border:  #1f2a44;
+}
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--gc-bg);
+  color: var(--gc-text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Garante cor de parágrafos mesmo se um estilo local tentar sobrescrever */
+body p {
+  color: var(--gc-text) !important;
+}
+
+/* Utilidades (opcional) */
+.text-soft { color: var(--gc-text-soft) !important; }
+.gc-gradient { background: var(--gc-accent-gradient); }
+a { color: var(--gc-g2); text-decoration: none; }
+a:hover { color: var(--gc-g4); }
+:focus-visible { outline: 2px solid var(--gc-g2); outline-offset: 2px; }
