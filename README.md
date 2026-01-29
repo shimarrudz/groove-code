@@ -1,6 +1,8 @@
 # Groove Code
 
-Um instrumento musical de código: um ambiente online, minimalista e imersivo. De um lado, um editor simples e elegante; do outro, uma visualização abstrata e pulsante que reage ao som. Não há botões tradicionais de play/stop: o código é a música. Cada alteração no código é refletida em tempo real no áudio.
+<img width="1536" height="1024" alt="groovecodelogo2" src="https://github.com/user-attachments/assets/52c39672-a56c-4e72-9b56-2c08e1a3ce83" />
+
+Imagine um instrumento musical de código: um ambiente online, minimalista e imersivo. De um lado, um editor simples e elegante; do outro, uma visualização abstrata e pulsante que reage ao som. Não há botões tradicionais de play/stop: o código é a música. Cada alteração no código é refletida em tempo real no áudio.
 
 > Objetivo: não ser uma DAW completa (como Ableton Live), mas sim um instrumento expressivo em que a linguagem de programação é a interface.
 
